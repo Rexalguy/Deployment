@@ -66,7 +66,8 @@ async def health_check():
         "status": "healthy",
         "model_loaded": model_loader.model is not None,
         "device": Config.DEVICE,
-        "gpu_available": torch.cuda.is_available()
+        "gpu_available": torch.cuda.is_available(),
+        "host": Config.HOST
     }
 
 @app.get("/model-info")
@@ -78,7 +79,8 @@ async def model_info():
         "classes": Config.CLASS_NAMES,
         "frame_size": Config.FRAME_SIZE,
         "num_frames": Config.NUM_FRAMES,
-        "device": Config.DEVICE
+        "device": Config.DEVICE,
+        "host": Config.HOST
     }
 
 @app.post("/predict")
@@ -147,12 +149,4 @@ async def internal_exception_handler(request, exc):
     return JSONResponse(
         status_code=500,
         content={"detail": "Internal server error during video processing"}
-    )
-
-if __name__ == "__main__":
-    uvicorn.run(
-        "main:app",
-        host=Config.HOST,
-        port=Config.PORT,
-        reload=True  # Auto-reload during development
     )
