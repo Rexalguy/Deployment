@@ -6,7 +6,7 @@ class Config:
     """Configuration settings for the Gait Analysis API"""
     
     # Model settings
-    MODEL_PATH = r"C:\Users\user\Desktop\GaitLab\Deployment\models\gait_student_best_balanced.pth"
+    MODEL_PATH = r"C:\Users\user\Desktop\Deployment\models\gait_student_best_balanced.pth"
     NUM_CLASSES = 9
     FRAME_SIZE = 224
     NUM_FRAMES = 16
